@@ -6,14 +6,11 @@ App.controller('homeController', ['$scope', 'myFactory', function($scope, myFact
     //return _.chain(response.data).map(function(item) { return item.year; }).uniq().value();
     myFactory.getData().then(function(response) {
         data = response;
-        console.log(data);
-
         $scope.years = _.chain(data).map(function(item) { return item.year; }).uniq().value();;
     });
     $scope.yearchange = function() {
         $("#grid").hide();
         $scope.chartdata = myFactory.getYearData($scope.year, data);
-        // $scope.chartdata = data;
         var values = [];
         _.each($scope.chartdata, function(item) {
             values.push({
